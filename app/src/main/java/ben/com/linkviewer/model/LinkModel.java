@@ -1,12 +1,13 @@
 package ben.com.linkviewer.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.util.Objects;
 
-public class LinkModel implements Parcelable {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
+public class LinkModel extends RealmObject {
+
+    @PrimaryKey
     private long id;
     private String link;
     private String date;
@@ -14,26 +15,6 @@ public class LinkModel implements Parcelable {
 
     public LinkModel() {
     }
-
-    protected LinkModel(Parcel in) {
-        id = in.readLong();
-        link = in.readString();
-        date = in.readString();
-        status = in.readInt();
-        //status = Status.values()[in.readInt()].getValue();
-    }
-
-    public static final Creator<LinkModel> CREATOR = new Creator<LinkModel>() {
-        @Override
-        public LinkModel createFromParcel(Parcel in) {
-            return new LinkModel(in);
-        }
-
-        @Override
-        public LinkModel[] newArray(int size) {
-            return new LinkModel[size];
-        }
-    };
 
     public long getId() {
         return id;
@@ -87,18 +68,5 @@ public class LinkModel implements Parcelable {
         return "LinkModel{" +
                 "link='" + link + '\'' +
                 '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(id);
-        parcel.writeString(link);
-        parcel.writeString(date);
-        parcel.writeInt(status);
     }
 }

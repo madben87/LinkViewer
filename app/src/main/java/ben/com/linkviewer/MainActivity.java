@@ -8,10 +8,12 @@ import android.webkit.WebView;
 import android.widget.TextView;
 
 import ben.com.linkviewer.model.LinkModel;
+import ben.com.linkviewer.util.LinkUtil;
 
 public class MainActivity extends AppCompatActivity {
 
     public static String SHOW_LINK = "ben.com.linklauncher.show_link";
+    public static String SHOW_LINK_SUCCESS = "ben.com.linklauncher.show_link_success";
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -25,12 +27,24 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             if (intent.getAction() != null && intent.getAction().equals(SHOW_LINK)) {
-                LinkModel model = intent.getParcelableExtra("model");
+
+                //String link =  intent.getCharSequenceExtra("link").toString();
+
+                //Uri uri = Uri.parse(link);
+
+                LinkModel model = LinkUtil.getResponse(intent);
 
                 imageView.getSettings().setJavaScriptEnabled(true);
-                imageView.loadUrl(model.getLink());
+                if (model != null) {
+                    imageView.loadUrl(model.getLink());
+                    date.setText(model.getDate());
+                }
 
-                date.setText(model.getDate());
+                Intent response = new Intent(SHOW_LINK_SUCCESS);
+                response.putExtra("status", 1);
+                response.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+
+                sendBroadcast(response);
             }
         }
     }
