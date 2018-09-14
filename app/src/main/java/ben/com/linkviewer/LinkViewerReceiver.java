@@ -3,10 +3,6 @@ package ben.com.linkviewer;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-
-import ben.com.linkviewer.model.LinkModel;
-import ben.com.linkviewer.util.LinkUtil;
 
 public class LinkViewerReceiver extends BroadcastReceiver {
 
