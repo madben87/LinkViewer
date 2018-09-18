@@ -1,6 +1,7 @@
 package ben.com.linkviewer.util;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 
 import ben.com.linkviewer.core.App;
@@ -13,12 +14,26 @@ public class LinkUtil {
     public static final String DATE = "date";
     public static final String STATUS = "status";
 
-    public static Intent getRequest(LinkModel model) {
+    public static Intent serviceIntent(LinkModel model, Context context, Class clazz) {
         if (model != null) {
-            Intent intent = new Intent(App.SHOW_LINK);
+            Intent intent = new Intent(context, clazz);
             intent.putExtra(ID, model.getId());
             intent.putExtra(LINK, model.getLink());
             intent.putExtra(DATE, model.getDate());
+            intent.putExtra(STATUS, model.getStatus());
+            return intent;
+        }
+
+        return null;
+    }
+
+    public static Intent getRequest(LinkModel model, String action) {
+        if (model != null) {
+            Intent intent = new Intent(action);
+            intent.putExtra(ID, model.getId());
+            intent.putExtra(LINK, model.getLink());
+            intent.putExtra(DATE, model.getDate());
+            intent.putExtra(STATUS, model.getStatus());
             intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
             return intent;
         }
@@ -29,15 +44,13 @@ public class LinkUtil {
     public static LinkModel getResponse(Intent intent) {
         LinkModel model = new LinkModel();
         if (intent != null) {
-            if (intent.getAction() != null && intent.getAction().equals(App.SHOW_LINK)) {
 
-                model.setId(intent.getLongExtra(ID, 0L));
-                model.setLink(intent.getStringExtra(LINK));
-                model.setDate(intent.getStringExtra(DATE));
-                model.setStatus(intent.getIntExtra(STATUS, 0));
+            model.setId(intent.getLongExtra(ID, 0L));
+            model.setLink(intent.getStringExtra(LINK));
+            model.setDate(intent.getStringExtra(DATE));
+            model.setStatus(intent.getIntExtra(STATUS, 0));
 
-                return model;
-            }
+            return model;
         }
 
         return null;

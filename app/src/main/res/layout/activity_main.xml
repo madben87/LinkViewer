@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <WebView
-            android:id="@+id/img"
+        <ImageView
+            android:id="@+id/linkImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/date"
