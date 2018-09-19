@@ -7,4 +7,8 @@ import ben.com.linkviewer.core.MVPView;
 public interface MainView extends MVPView {
 
     ImageView getDisplay();
+
+    void showProgress();
+
+    void hideProgress();
 }

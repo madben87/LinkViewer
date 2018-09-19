@@ -7,8 +7,10 @@ import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     ImageView linkImage;
     @BindView(R.id.date)
     TextView date;
+    @BindView(R.id.loadProgress)
+    ProgressBar loadProgress;
 
     @Inject
     MainPresenter presenter;
@@ -50,9 +54,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         Intent intent = getIntent();
         if (intent != null) {
             if (intent.getAction() != null && intent.getAction().equals(App.SHOW_LINK)) {
-
                 presenter.needShowLink(LinkUtil.getResponse(intent));
-
             } else if (intent.getAction() != null && intent.getAction().equals(App.SHOW_HISTORY_LINK)) {
                 presenter.needShowHistoryLink(LinkUtil.getResponse(intent));
             } else {
@@ -80,6 +82,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     public ImageView getDisplay() {
         return linkImage;
+    }
+
+    @Override
+    public void showProgress() {
+        loadProgress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        loadProgress.setVisibility(View.GONE);
     }
 
     private void activityFinish() {

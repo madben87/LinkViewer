@@ -3,6 +3,7 @@
     package="ben.com.linkviewer">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".core.App"
@@ -39,7 +40,7 @@
         <service
             android:name=".service.LinkShowService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
     </application>
 
 </manifest>
