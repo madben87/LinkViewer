@@ -11,4 +11,8 @@ public interface MainView extends MVPView {
     void showProgress();
 
     void hideProgress();
+
+    void requestPermissions();
+
+    void finishView(int seconds);
 }

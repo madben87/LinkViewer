@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 
 import java.io.ByteArrayOutputStream;
 
-import ben.com.linkviewer.core.App;
 import ben.com.linkviewer.model.LinkModel;
 
 public class LinkUtil {
@@ -90,10 +89,3 @@ public class LinkUtil {
         return model;
     }
 }
-
-/*ByteArrayOutputStream stream = new ByteArrayOutputStream();
-bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-byte[] byteArray = stream.toByteArray();
-
-Intent in1 = new Intent(this, Activity2.class);
-in1.putExtra("image",byteArray);*/

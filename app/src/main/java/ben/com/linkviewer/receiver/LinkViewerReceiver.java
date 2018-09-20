@@ -9,8 +9,6 @@ import ben.com.linkviewer.ui.main.MainActivity;
 
 public class LinkViewerReceiver extends BroadcastReceiver {
 
-    //public static String SHOW_LINK = "ben.com.linklauncher.show_link";
-
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent != null) {
